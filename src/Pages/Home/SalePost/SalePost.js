@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 
 const SalePost = () => {
-    const {user} = useContext(AuthContext)
+   
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -43,12 +42,11 @@ const SalePost = () => {
                         originalPrice: data.originalPrice,
                         resalePrice: data.resalePrice,
                         yearsOfUse: data.yearsOfUse,
-                        category: data.category,
+                        category_id: data.category_id,
                         sellerName: data.sellerName,
-                        image: imgData.data.url
+                        image: imgData.data.url, 
                     }
 
-                    // save doctor information to the database
                     fetch('http://localhost:5000/sellpost', {
                         method: 'POST',
                         headers: {
@@ -60,7 +58,7 @@ const SalePost = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
-                            toast.success(`${data.name} is added successfully`);
+                            toast.success(`Sell Post is added successfully`);
                         })
                 }
             })
@@ -71,8 +69,8 @@ const SalePost = () => {
     }
 
     return (
-        <div className='w-96 p-7'>
-            <h2 className="text-4xl">Add A Doctor</h2>
+        <div className='w-96 p-7 mx-auto'>
+            <h2 className="text-4xl">Sell Post</h2>
             <form onSubmit={handleSubmit(handleSellPost)}>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product name</span></label>
@@ -108,12 +106,12 @@ const SalePost = () => {
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Category</span></label>
                     <select
-                        {...register('category')}
+                        {...register('category_id')}
                         className="select input-bordered w-full max-w-xs">
                         {
                             categories.map(category=> <option
                                 key={category._id}
-                                value={category.name}
+                                value={category._id}
                             >{category.name}</option>)
                         }
 
@@ -134,7 +132,7 @@ const SalePost = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                 </div>
-                <input className='btn btn-accent w-full mt-4' value="Sell Post" type="submit" />
+                <input className='btn btn-primary w-full mt-4' value="Sell Post" type="submit" />
             </form>
         </div>
     );
