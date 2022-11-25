@@ -1,5 +1,6 @@
 import Blog from "../../Blog/Blog";
 import Main from "../../Layout/Main";
+import NotFoundPage from "../../NotFoundPage/NotFoundPage";
 import Category from "../../Pages/Category/Category";
 import Home from "../../Pages/Home/Home/Home";
 import SalePost from "../../Pages/Home/SalePost/SalePost";
@@ -45,8 +46,13 @@ const router = createBrowserRouter([
                 element:<PostCard></PostCard>,
                 loader: ({ params }) => fetch(`http://localhost:5000/sellpost/${params.id}`)
                 
-            }
+            },
+            
         ]
+    },
+    {
+        path: '*',
+        element: <NotFoundPage></NotFoundPage>
     }
 ])
 export default router;

@@ -13,7 +13,7 @@ const SellPostCard = ({ sellPost }) => {
                         <p>Resale price: ${resalePrice}</p>
                         <p>Years of use: {yearsOfUse}</p>
                         <p>Location: {location}</p>
-                        <p>Seller name:{sellerName}</p>
+                        <p>Seller name: {sellerName}</p>
                     </div>
                     <div>
                         <button className='btn btn-primary'>Book Now</button>
