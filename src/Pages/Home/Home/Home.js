@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SellerRoute from '../../../Routes/SellerRoute/SellerRoute';
 import Banner from '../Banner/Banner';
 import Categories from '../Categories/Categories';
 
@@ -17,4 +16,4 @@ const Home = () => {
     );
 };
 
-export default Home;<Banner></Banner>
+export default Home;

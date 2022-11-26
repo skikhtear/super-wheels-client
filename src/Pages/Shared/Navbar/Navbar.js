@@ -3,10 +3,12 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/image/logo.png'
+import useSeller from '../../../hooks/useSeller';
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [isSeller] = useSeller(user?.email)
 
     const handleLogOut = () => {
         logOut()
@@ -14,7 +16,7 @@ const Navbar = () => {
             .catch()
     }
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 w-full">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -32,6 +34,11 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/blog'}>Blog</Link></li>
+                    {
+                        isSeller && <>
+                            <li><Link to="/myposts">My Posts</Link></li>
+                        </>
+                    }
                 </ul>
             </div>
             <div className="navbar-end">

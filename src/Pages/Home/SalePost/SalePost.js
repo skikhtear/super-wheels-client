@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React,{useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 
 const SalePost = () => {
+    const {user} = useContext(AuthContext)
    
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -71,7 +73,7 @@ const SalePost = () => {
 
     return (
         <div className='w-96 p-7 mx-auto'>
-            <h2 className="text-4xl">Sell Post</h2>
+            <h2 className="text-4xl">Give Your Informatin</h2>
             <form onSubmit={handleSubmit(handleSellPost)}>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Product name</span></label>
@@ -128,9 +130,9 @@ const SalePost = () => {
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Email</span></label>
-                    <input type="email" {...register("email", {
+                    <input type="email" defaultValue={user?.email} {...register("email", {
                         required: true
-                    })} className="input input-bordered w-full max-w-xs" />
+                    })} className="input input-bordered w-full max-w-xs" readOnly />
                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                 </div>
                 <div className="form-control w-full max-w-xs">
