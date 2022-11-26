@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 
@@ -21,52 +20,32 @@ const MyPosts = () => {
             return data;
         }
     })
-
+    
     return (
-        <div>
-            <h3 className="text-3xl mb-5">My Posts</h3>
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Treatment</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Payment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            posts &&
-                            posts?.map((post, i) => <tr key={post._id}>
-                                <th>{i + 1}</th>
-                                <td>{post.productName}</td>
-                                <td>{post.resalePrice}</td>
-                                <td>{post.yearsOfUse}</td>
-                                <td>{post.sellerName}</td>
-                                {/* <td>
-                                    {
-                                        booking.price && !booking.paid && <Link
-                                            to={`/dashboard/payment/${booking._id}`}
-                                        >
-                                            <button
-                                                className='btn btn-primary btn-sm'
-                                            >Pay</button>
-                                        </Link>
-                                    }
-                                    {
-                                        booking.price && booking.paid && <span className='text-green-500'>Paid</span>
-                                    }
-                                </td> */}
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
-            </div>
+        <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 sm:mx-auto my-10'>
+            {
+                posts.map(post => <div >
+                    <div className="card w-auto glass bg-base-100 shadow-2xl">
+                        <figure><img src={post.image} alt="Shoes" style={{ height: 280, width: 500 }} /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{post.productName}</h2>
+                            <p>Original price: ${post.originalPrice}</p>
+                            <p>Resale price: ${post.resalePrice}</p>
+                            <p>Years of use: {post.yearsOfUse}</p>
+                            <p>Location: {post.location}</p>
+                            <p>Seller name: {post.sellerName}</p>
+                            <div className="card-actions justify-end">
+                                <button className='btn btn-primary'>Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>)
+            }
         </div>
     );
 };
 
 export default MyPosts;
+
+
+

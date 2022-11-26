@@ -1,12 +1,10 @@
 import Blog from "../../Blog/Blog";
-import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import NotFoundPage from "../../NotFoundPage/NotFoundPage";
 import Category from "../../Pages/Category/Category";
 import Home from "../../Pages/Home/Home/Home";
 import SalePost from "../../Pages/Home/SalePost/SalePost";
 import Login from "../../Pages/Login/Login";
-import PostCard from "../../Pages/PostCard/PostCard";
 import MyPosts from "../../Pages/SellerPost/MyPosts/MyPosts";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -45,23 +43,11 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
                 
             },
-            {
-                path: '/sellpost/:id',
-                element:<PostCard></PostCard>,
-                loader: ({ params }) => fetch(`http://localhost:5000/sellpost/${params.id}`)
-                
-            },
+            
             {
                 path:'/myposts',
                 element:<PrivateRoute><SellerRoute><MyPosts></MyPosts></SellerRoute></PrivateRoute>
             }
-            
-        ]
-    },
-    {
-        path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        children: [
             
         ]
     },
