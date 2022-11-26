@@ -26,7 +26,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <img src={logo} alt=""style={{width:90}} />
-                <Link className="btn btn-ghost normal-case text-3xl font-extrabold">Super Wheels</Link>
+                <Link to={'/'} className="btn btn-ghost normal-case text-3xl font-extrabold">Super Wheels</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

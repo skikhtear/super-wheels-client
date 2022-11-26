@@ -5,7 +5,7 @@ import SellPostCard from '../SellPostCard/SellPostCard';
 const Category = () => {
     const categorySellPost = useLoaderData()
     return (
-        <div className='grid gap-6 grid-cols-1 md:grid-cols-1 lg:grid-cols-2 my-10 sm:mx-auto'>
+        <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 sm:mx-auto'>
             {
                 categorySellPost.map(sellPost => <SellPostCard
                     key={sellPost._id}
