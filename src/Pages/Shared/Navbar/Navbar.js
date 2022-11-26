@@ -4,11 +4,13 @@ import { FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/image/logo.png'
 import useSeller from '../../../hooks/useSeller';
+import useAdmin from '../../../hooks/useAdmin';
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isSeller] = useSeller(user?.email)
+    const [isAdmin] = useAdmin(user?.email)
 
     const handleLogOut = () => {
         logOut()
@@ -37,6 +39,11 @@ const Navbar = () => {
                     {
                         isSeller && <>
                             <li><Link to="/myposts">My Posts</Link></li>
+                        </>
+                    }
+                    {
+                        isAdmin && <>
+                            <li><Link to="/admin/allusers">All Users</Link></li>
                         </>
                     }
                 </ul>

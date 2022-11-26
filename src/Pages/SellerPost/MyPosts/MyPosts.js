@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext,useEffect,useState } from 'react';
 import { set } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 
@@ -25,6 +26,26 @@ const MyPosts = () => {
             })
     }, [user?.email, logOut])
 
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to delete this comment');
+        if (proceed) {
+            fetch(`http://localhost:5000/sellposts/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast('deleted successfully');
+                        const remaining = posts.filter(odr => odr._id !== id);
+                        setPosts(remaining);
+                    }
+                })
+        }
+    }
+
     return (
         <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:mx-auto my-10'>
             {
@@ -39,7 +60,7 @@ const MyPosts = () => {
                             <p>Location: {post.location}</p>
                             <p>Seller name: {post.sellerName}</p>
                             <div className="card-actions justify-end">
-                                <button className='btn btn-primary'>Book Now</button>
+                                <td>{user?.role !== 'seller' && <button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-primary'>Delete post</button>}</td>
                             </div>
                         </div>
                     </div>

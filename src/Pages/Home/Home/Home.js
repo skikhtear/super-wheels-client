@@ -2,6 +2,7 @@ import React,{useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import useSeller from '../../../hooks/useSeller';
+import About from '../About/About';
 import Banner from '../Banner/Banner';
 import Categories from '../Categories/Categories';
 
@@ -26,7 +27,8 @@ const Home = () => {
                 }
                 
             </div>
-          <Categories></Categories>  
+            <Categories></Categories>  
+            <About></About>
         </div>
     );
 };

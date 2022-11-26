@@ -1,12 +1,14 @@
 import Blog from "../../Blog/Blog";
 import Main from "../../Layout/Main";
 import NotFoundPage from "../../NotFoundPage/NotFoundPage";
+import AllUsers from "../../Pages/AllUser/AllUser";
 import Category from "../../Pages/Category/Category";
 import Home from "../../Pages/Home/Home/Home";
 import SalePost from "../../Pages/Home/SalePost/SalePost";
 import Login from "../../Pages/Login/Login";
 import MyPosts from "../../Pages/SellerPost/MyPosts/MyPosts";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 
@@ -43,14 +45,20 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
                 
             },
+            {
+                path: '/admin/allusers',
+                element: <PrivateRoute><AdminRoute><AllUsers></AllUsers></AdminRoute></PrivateRoute>
+
+            },
             
             {
                 path:'/myposts',
                 element:<PrivateRoute><SellerRoute><MyPosts></MyPosts></SellerRoute></PrivateRoute>
-            }
+            },
             
         ]
     },
+    
     {
         path: '*',
         element: <NotFoundPage></NotFoundPage>
