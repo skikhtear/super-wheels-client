@@ -1,6 +1,7 @@
 import Blog from "../../Blog/Blog";
 import Main from "../../Layout/Main";
 import NotFoundPage from "../../NotFoundPage/NotFoundPage";
+import AllPosts from "../../Pages/AllPosts/AllPosts";
 import AllUsers from "../../Pages/AllUser/AllUser";
 import Category from "../../Pages/Category/Category";
 import Home from "../../Pages/Home/Home/Home";
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
             {
                 path: '/admin/allusers',
                 element: <PrivateRoute><AdminRoute><AllUsers></AllUsers></AdminRoute></PrivateRoute>
+
+            },
+            {
+                path: '/admin/allposts',
+                element: <PrivateRoute><AdminRoute><AllPosts></AllPosts></AdminRoute></PrivateRoute>
 
             },
             

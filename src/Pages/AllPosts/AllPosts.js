@@ -1,33 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext,useEffect,useState } from 'react';
-import { set } from 'react-hook-form';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Context/AuthProvider';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
-const MyPosts = () => {
-    const { user,logOut } = useContext(AuthContext);
-    const [posts, setPosts] = useState([])
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/sellposts?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+const AllPosts = () => {
+    const { user, logOut } = useContext(AuthContext);
+    
+        const { data: posts = [], refetch } = useQuery({
+            queryKey: ['posts'],
+            queryFn: async () => {
+                const res = await fetch('http://localhost:5000/sellpost');
+                const data = await res.json();
+                return data;
             }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
-                return res.json();
-            })
-            .then(data => {
-                setPosts(data);
-            })
-    }, [user?.email, logOut])
+        });
 
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure, you want to delete this comment');
+        const proceed = window.confirm('Are you sure, you want to delete this sell post');
         if (proceed) {
             fetch(`http://localhost:5000/sellpost/${id}`, {
                 method: 'DELETE',
@@ -39,8 +30,7 @@ const MyPosts = () => {
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast('deleted successfully');
-                        const remaining = posts.filter(odr => odr._id !== id);
-                        setPosts(remaining);
+                        refetch()
                     }
                 })
         }
@@ -60,7 +50,7 @@ const MyPosts = () => {
                             <p>Location: {post.location}</p>
                             <p>Seller name: {post.sellerName}</p>
                             <div className="card-actions justify-end">
-                                <td>{user?.role !== 'seller' && <button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-primary'>Delete post</button>}</td>
+                            <button className="btn btn-primary" onClick={() => handleDelete(post._id)} >Delete post</button>
                             </div>
                         </div>
                     </div>
@@ -70,7 +60,4 @@ const MyPosts = () => {
     );
 };
 
-export default MyPosts;
-
-
-
+export default AllPosts;

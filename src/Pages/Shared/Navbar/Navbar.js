@@ -44,6 +44,7 @@ const Navbar = () => {
                     {
                         isAdmin && <>
                             <li><Link to="/admin/allusers">All Users</Link></li>
+                            <li><Link to="/admin/allposts">All Posts</Link></li>
                         </>
                     }
                 </ul>

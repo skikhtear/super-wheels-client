@@ -13,7 +13,7 @@ const AllUsers = () => {
     });
 
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure, you want to delete this comment');
+        const proceed = window.confirm('Are you sure, you want to delete this user');
         if (proceed) {
             fetch(`http://localhost:5000/users/${id}`, {
                 method: 'DELETE',
