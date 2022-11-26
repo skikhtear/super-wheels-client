@@ -44,6 +44,7 @@ const SalePost = () => {
                         yearsOfUse: data.yearsOfUse,
                         category_id: data.category_id,
                         sellerName: data.sellerName,
+                        email: data.email,
                         image: imgData.data.url, 
                     }
 
@@ -124,6 +125,13 @@ const SalePost = () => {
                     <input type="text"{...register("sellerName", {
                         required: "Seller ame is Required"
                     })} className="input input-bordered w-full max-w-xs"/>
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Email</span></label>
+                    <input type="email" {...register("email", {
+                        required: true
+                    })} className="input input-bordered w-full max-w-xs" />
+                    {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Photo</span></label>
