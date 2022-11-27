@@ -36,17 +36,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to={'/'}>Home</Link></li>
                     <li><Link to={'/blog'}>Blog</Link></li>
-                    {
-                        isSeller && <>
-                            <li><Link to="/myposts">My Posts</Link></li>
-                        </>
-                    }
-                    {
-                        isAdmin && <>
-                            <li><Link to="/admin/allusers">All Users</Link></li>
-                            <li><Link to="/admin/allposts">All Posts</Link></li>
-                        </>
-                    }
+                    <li><Link to={'/dashboard'}>Dashboard</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">

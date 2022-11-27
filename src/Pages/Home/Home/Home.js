@@ -18,7 +18,7 @@ const Home = () => {
             <div className='text-center mb-20'>
                 { isSeller ?
                     <>
-                        <Link to={'/sellpost'}><button className="btn glass w-96 text-bold text-white text-xl">Sell Your Car</button></Link>
+                        <Link to={'/dashboard/sellpost'}><button className="btn glass w-96 text-bold text-white text-xl">Sell Your Car</button></Link>
                     </>
                     :
                     <>

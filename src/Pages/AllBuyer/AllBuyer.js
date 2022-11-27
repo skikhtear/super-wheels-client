@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const AllUsers = () => {
+const AllBuyer = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('http://localhost:5000/users/buyer');
             const data = await res.json();
             return data;
         }
@@ -25,7 +25,7 @@ const AllUsers = () => {
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast('deleted successfully');
-                       refetch()
+                        refetch()
                     }
                 })
         }
@@ -33,7 +33,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h2 className="text-3xl">All Users</h2>
+            <h2 className="text-3xl">All Buyer</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -42,7 +42,6 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Action</th>
-                            <th>verification</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,8 +50,8 @@ const AllUsers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-primary'>Delete user</button>}</td>
-                                <td><button className='btn btn-xs btn-danger'>Verify</button></td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleDelete(user._id)}
+                                    className='btn btn-xs btn-primary'>Delete user</button>}</td>
                             </tr>)
                         }
 
@@ -63,4 +62,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default AllBuyer;
