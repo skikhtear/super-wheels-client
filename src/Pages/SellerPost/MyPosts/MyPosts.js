@@ -10,7 +10,7 @@ const MyPosts = () => {
     useEffect(() => {
         fetch(`http://localhost:5000/sellposts?email=${user?.email}`, {
             headers: {
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {

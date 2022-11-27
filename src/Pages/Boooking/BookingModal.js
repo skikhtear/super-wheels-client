@@ -13,22 +13,21 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         event.preventDefault();
         const form = event.target;
         // const slot = form.slot.value;
-        // const name = form.name.value;
+        const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-        // [3, 4, 5].map((value, i) => console.log(value))
+        const location = form.MeetingLocation.value;
         const booking = {
             
-            itemName: productName,
+            productName: productName,
             price: resalePrice,
             email,
             phone,
-            
+            name,
+            location
         }
 
-        // TODO: send data to the server
-        // and once data is saved then close the modal 
-        // and display success toast
+        
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
@@ -60,11 +59,11 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         {/* <input type="text" disabled value={date} className="input w-full input-bordered " /> */}
                         <input name="productName" defaultValue={productName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="price" defaultValue={`'$'{resalePrice}`} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="name" defaultValue={`{user?.name} {user?.displayName}`} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="name" defaultValue={`${user?.name }${user?.displayName}`} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
-                        <input name="Meeting location" type="text" placeholder="Meeting location" className="input w-full input-bordered" />
+                        <input name="MeetingLocation" type="text" placeholder="Meeting location" className="input w-full input-bordered" />
                         <br />
                         <input className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>

@@ -43,10 +43,13 @@ const SalePost = () => {
                         location: data.location,
                         originalPrice: data.originalPrice,
                         resalePrice: data.resalePrice,
-                        yearsOfUse: data.yearsOfUse,
+                        yearsOfPurchase: data.yearsOfUse,
                         category_id: data.category_id,
                         sellerName: data.sellerName,
                         email: data.email,
+                        condition: data.condition,
+                        phone: data.phone,
+                        description: data.description,
                         image: imgData.data.url, 
                     }
 
@@ -62,6 +65,7 @@ const SalePost = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`Sell Post is added successfully`);
+                            navigate('/myposts')
                         })
                 }
             })
@@ -101,11 +105,37 @@ const SalePost = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                 </div>
                 <div className="form-control w-full max-w-xs">
-                    <label className="label"> <span className="label-text">Years of use</span></label>
-                    <input type="number" {...register("yearsOfUse", {
-                        required: "years of use is Required"
+                    <label className="label"> <span className="label-text">Years of purchase</span></label>
+                    <input type="number" {...register("yearsOfPurchase", {
+                        required: "years of purchase is Required"
                     })} className="input input-bordered w-full max-w-xs" />
                 </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Phone</span></label>
+                    <input type="number" {...register("phone", {
+                        required: "Phone is Required"
+                    })} className="input input-bordered w-full max-w-xs" />
+                </div>
+
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Condition Type </span></label>
+                    <select className="select select-primary w-full max-w-xs" {...register("condition", {
+                    })}>
+                        <option selected>Fair</option>
+                        <option>Good</option>
+                        <option>Excellent</option>
+                    </select>
+                </div>
+
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Description</span></label>
+                    <textarea {...register("description", {
+                        required: "description is Required"
+                    })} className="textarea textarea-bordered" placeholder="Bio"></textarea>
+                </div>
+
+                
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Category</span></label>
                     <select
@@ -150,3 +180,5 @@ const SalePost = () => {
 
 
 export default SalePost;
+
+
