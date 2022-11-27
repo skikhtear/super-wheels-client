@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../Context/AuthProvider';
+
 
 
 
 const AllPosts = () => {
-    const { user, logOut } = useContext(AuthContext);
-    
+
         const { data: posts = [], refetch } = useQuery({
             queryKey: ['posts'],
             queryFn: async () => {
@@ -39,7 +38,7 @@ const AllPosts = () => {
     return (
         <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:mx-auto my-10'>
             {
-                posts.map(post => <div >
+                posts.map(post => <div key={post._id}>
                     <div className="card w-auto glass bg-base-100 shadow-2xl">
                         <figure><img src={post.image} alt="Shoes" style={{ height: 280, width: 500 }} /></figure>
                         <div className="card-body">

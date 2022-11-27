@@ -46,6 +46,7 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
                 
             },
+            
             {
                 path: '/admin/allusers',
                 element: <PrivateRoute><AdminRoute><AllUsers></AllUsers></AdminRoute></PrivateRoute>

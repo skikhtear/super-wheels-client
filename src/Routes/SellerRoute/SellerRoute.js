@@ -6,10 +6,6 @@ import Loading from '../../Pages/Shared/Loading/Loading';
 
 
 
-
-
-
-
 const SellerRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const [isSeller, isSellerLoading] = useSeller(user?.email);

@@ -1,6 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext,useEffect,useState } from 'react';
-import { set } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
@@ -27,7 +25,7 @@ const MyPosts = () => {
     }, [user?.email, logOut])
 
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure, you want to delete this comment');
+        const proceed = window.confirm('Are you sure, you want to delete this sell post');
         if (proceed) {
             fetch(`http://localhost:5000/sellpost/${id}`, {
                 method: 'DELETE',
@@ -60,7 +58,7 @@ const MyPosts = () => {
                             <p>Location: {post.location}</p>
                             <p>Seller name: {post.sellerName}</p>
                             <div className="card-actions justify-end">
-                                <td>{user?.role !== 'seller' && <button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-primary'>Delete post</button>}</td>
+                                <td>{user?.role !== 'seller' && <button onClick={() => handleDelete(post._id)} className='btn btn-primary'>Delete post</button>}</td>
                             </div>
                         </div>
                     </div>
