@@ -4,7 +4,6 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 
 const BookingModal = ({ bookingInfo, setBookingInfo }) => {
-    // treatment is just another name of appointmentOptions with name, slots, _id
     const { productName, resalePrice } = bookingInfo;
 
     const { user } = useContext(AuthContext);
@@ -12,7 +11,6 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
-        // const slot = form.slot.value;
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
@@ -57,10 +55,9 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{productName}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
-                        {/* <input type="text" disabled value={date} className="input w-full input-bordered " /> */}
                         <input name="productName" defaultValue={productName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="name" defaultValue={user?.name} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="name" defaultValue={user?.displayName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name="MeetingLocation" type="text" placeholder="Meeting location" className="input w-full input-bordered" />
