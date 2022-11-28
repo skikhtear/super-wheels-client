@@ -28,7 +28,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
         }
 
         
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://super-wheels-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const BookingModal = ({ bookingInfo, setBookingInfo }) => {
                         {/* <input type="text" disabled value={date} className="input w-full input-bordered " /> */}
                         <input name="productName" defaultValue={productName} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="price" defaultValue={resalePrice} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name="name" defaultValue={`${user?.name }${user?.displayName}`} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name="name" defaultValue={user?.name} disabled type="text" placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name="MeetingLocation" type="text" placeholder="Meeting location" className="input w-full input-bordered" />

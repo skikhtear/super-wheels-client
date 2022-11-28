@@ -19,7 +19,7 @@ const SalePost = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/category');
+            const res = await fetch('https://super-wheels-server.vercel.app/category');
             const data = await res.json();
             return data;
         }
@@ -43,7 +43,7 @@ const SalePost = () => {
                         location: data.location,
                         originalPrice: data.originalPrice,
                         resalePrice: data.resalePrice,
-                        yearsOfPurchase: data.yearsOfUse,
+                        yearsOfPurchase: data.yearsOfpurchase,
                         category_id: data.category_id,
                         sellerName: data.sellerName,
                         email: data.email,
@@ -53,7 +53,7 @@ const SalePost = () => {
                         image: imgData.data.url, 
                     }
 
-                    fetch('http://localhost:5000/sellpost', {
+                    fetch('https://super-wheels-server.vercel.app/sellpost', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -65,7 +65,7 @@ const SalePost = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`Sell Post is added successfully`);
-                            navigate('/myposts')
+                            navigate('/dashboard/myposts')
                         })
                 }
             })
@@ -131,7 +131,7 @@ const SalePost = () => {
                     <label className="label"> <span className="label-text">Description</span></label>
                     <textarea {...register("description", {
                         required: "description is Required"
-                    })} className="textarea textarea-bordered" placeholder="Bio"></textarea>
+                    })} className="textarea textarea-bordered" placeholder="Description"></textarea>
                 </div>
 
                 

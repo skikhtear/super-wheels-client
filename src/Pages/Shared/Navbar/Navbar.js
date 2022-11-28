@@ -27,6 +27,7 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to={'/'}>Home</Link></li>
                         <li><Link to={'/blog'}>Blog</Link></li>
+                        <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     </ul>
                 </div>
                 <img src={logo} alt=""style={{width:90}} />

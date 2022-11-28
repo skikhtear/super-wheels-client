@@ -8,7 +8,7 @@ const MyPosts = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/sellposts?email=${user?.email}`, {
+        fetch(`https://super-wheels-server.vercel.app/sellposts?email=${user?.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
@@ -27,7 +27,7 @@ const MyPosts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to delete this sell post');
         if (proceed) {
-            fetch(`http://localhost:5000/sellpost/${id}`, {
+            fetch(`https://super-wheels-server.vercel.app/sellpost/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -54,7 +54,10 @@ const MyPosts = () => {
                             <h2 className="card-title">{post.productName}</h2>
                             <p>Original price: ${post.originalPrice}</p>
                             <p>Resale price: ${post.resalePrice}</p>
-                            <p>Years of use: {post.yearsOfUse}</p>
+                            <p>Year of Purchase: {post.yearsOfPurchase}</p>
+                            <p>Condition Type: {post.condition}</p>
+                            <p>Description: {post.description}</p>
+                            <p>Phone: {post.phone}</p>
                             <p>Location: {post.location}</p>
                             <p>Seller name: {post.sellerName}</p>
                             <div className="card-actions justify-end">
